@@ -1,6 +1,10 @@
 # Amazon experiment setup
 
 This experiments consists of one server and N clients.
+Each machine will host a Docker container which does the actual work.
+Docker container for the server (*contains experiment parameters*): https://github.com/rubensworks/TPFStreamingQueryExecutor-CityBench
+Docker container for the client: https://github.com/rubensworks/TPFStreamingQueryExecutor
+
 The experiment tests the scalability of the TPF Query Streamer, C-SPARQL and CQELS using CityBench.
 The N clients are only required for the TPF Query Streamer clients. For C-SPARQl and CQELS everything runs on the server anyways.
 The server will be aware of the pool of N clients and when TPFQS is evaluated, it will start TPFQS clients on the remote client machines.
@@ -46,4 +50,15 @@ It is highly recommended to test the following things before running the experim
   Next to this, you also MUST be able to ssh to them using the `remote-admin` account with password `remote-admin`. (Unsafe, I know, but otherwise manual experiment setup work would even be worse...)
 * Each client machine MUST be able to ping `server`. Eventually, it MUST be able to connect to it over port `3001` for accessing the TPF interface, but
   this will only work once the TPFQS experiment is running.
+
+## Starting
+* The experiment is started by running `./start-server.sh <server host>`, this will also remove any previous test output, so make sure you download that on beforehand.
+  This script will block until the Docker container has been started, after that the container will be running as a daemon.
+* Once the experiment is finished, results can be downloaded to the current directory using `./fetch.sh <server host>`.
+
+## Notes
+* If something was changed to the benchmark, just run `sudo rm -rf /var/tmp/citybench/container` on the server and it will be redownloaded during next run.
+* To make sure everything remains clean on the server, make sure to call `sudo docker kill` on all in `sudo docker ps a` and `sudo docker rm` on all in `sudo docker ps -a`.
+  You can also remove the citybench container by calling `sudo docker rmi citybench`.
+  Don't remove containers with force, since this may corrupt the docker engine and a (server) reinstall may be required.
 
