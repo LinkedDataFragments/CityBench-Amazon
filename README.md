@@ -19,9 +19,10 @@ it will also keep an SSH connection open to capture CPU and memory usage for eac
    Save your private key in this directory as cert.pem or symlink it to here.
    These scripts are built for the Amazon Machine Image.
 2. Assign an Elastic IP to the server, or use some other way to make it reachable.
-3. Run `./transmit.sh <server-host>`, this places all required bootstrap files on the server
-4. Run `./install-server <server-host>`, this will install the required server packages, mainly Docker.
-5. Make sure to add the `server` alias to `127.0.0.1` in `/etc/hosts` on the server, so that it can find itself.
+3. Set the server's ip in `nginx-default`
+4. Run `./transmit.sh <server-host>`, this places all required bootstrap files on the server
+5. Run `./install-server <server-host>`, this will install the required server packages, mainly Docker.
+6. Make sure to add the `server` alias to `127.0.0.1` in `/etc/hosts` on the server, so that it can find itself.
    This is required for automatically closing the proxy.
 
 ## Setup client

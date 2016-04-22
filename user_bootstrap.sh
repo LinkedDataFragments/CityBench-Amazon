@@ -17,6 +17,16 @@ else
     mkdir -p $dir
     docker build -t citybench .
 fi
+
+cd /home/ec2-user/citybench/
+
+# Start proxy (exposes 3001 and forwards to 3002)
+docker pull nginx:stable
+id=$(./start-cache.sh)
+echo "Cache started at $id"
+
 # network: host-mode because we want to be able to access network using hostnames, and reduces overhead.
-docker run -d --net="host" -p 3001:3001 -v $dir:/home/citybench/CityBench/result_log/ citybench > $dir/docker.log
+docker run --name server -d --net="host" -p 3002:3001 -v $dir:/home/citybench/CityBench/result_log/ -v /home/ec2-user/citybench/tmp-cache:/home/citybench/tmp-cache citybench > $dir/docker.log
+
+#./stop-cache.sh $id
 

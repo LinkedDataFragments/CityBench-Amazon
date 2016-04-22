@@ -15,7 +15,7 @@ publicclient=$4
 ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -i ~/Documents/Admin/amazon_ldf_rtaelman.pem ec2-user@$publicclient "sudo sed -c -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config && sudo service sshd restart" 
 
 # Add client to host on server
-ssh -i ~/Documents/Admin/amazon_ldf_rtaelman.pem ec2-user@$server "echo '$client c$clientid' | sudo tee -a /etc/hosts"
+ssh -i cert.pem ec2-user@$server "echo '$client c$clientid' | sudo tee -a /etc/hosts"
 
 # Add to file
 echo "c$clientid $client" >> clients.txt
