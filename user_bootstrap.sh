@@ -4,7 +4,7 @@
 
 # Clone benchmark docker container
 if [ ! -d "container" ]; then
-    git clone https://github.com/rubensworks/TPFStreamingQueryExecutor-CityBench.git container
+    git clone https://github.com/rubensworks/LinkedDataFragments/CityBench-Docker.git container
     cd container
     dir="/home/ec2-user/citybench/output/"
     rm -rf $dir

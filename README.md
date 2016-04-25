@@ -2,8 +2,8 @@
 
 This experiments consists of one server and N clients.
 Each machine will host a Docker container which does the actual work.
-Docker container for the server (*contains experiment parameters*): https://github.com/rubensworks/TPFStreamingQueryExecutor-CityBench
-Docker container for the client: https://github.com/rubensworks/TPFStreamingQueryExecutor
+Docker container for the server (*contains experiment parameters*): https://github.com/LinkedDataFragments/CityBench-Docker
+Docker container for the client: https://github.com/LinkedDataFragments/QueryStreamer.js
 
 The experiment tests the scalability of the TPF Query Streamer, C-SPARQL and CQELS using CityBench.
 The N clients are only required for the TPF Query Streamer clients. For C-SPARQl and CQELS everything runs on the server anyways.

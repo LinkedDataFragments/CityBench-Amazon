@@ -26,6 +26,6 @@ echo "$SERVER_IP server" >> /etc/hosts
 # Clone client and build docker container
 mkdir -p /var/tmp/
 cd /var/tmp/
-git clone https://github.com/rubensworks/TPFStreamingQueryExecutor.git client
+git clone https://github.com/LinkedDataFragments/QueryStreamer.js.git client
 cd client
 docker build -t tpfqs-client .
